@@ -1,15 +1,13 @@
-import express, { request, response } from 'express'
+import 'reflect-metadata';
+import express, { request, response } from 'express';
+import './database';
+import { router } from './routes';
 
-const app = express()
+const app = express();
 
-let PORT: number = 3003
+let PORT: number = 3003;
 
-app.get("/", (request, response) => {
-    return response.json({message: "Hello Word to #NLW04🎉"})
-})
+app.use(express.json());
+app.use(router);
 
-app.post("/", (request, response) => {
-    return response.json({message: "Dados salvos com sucesso ✔"})
-})
-
-app.listen(PORT, () => console.log("Server is running ✔"))
+app.listen(PORT, () => console.log("Server is running ✔"));
